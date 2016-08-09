@@ -1,4 +1,4 @@
-# Contributing to OpenTok One-to-One Communication Sample Apps
+# Contributing to OpenTok Annotations Accelerator Pack
 
 ## Code of Conduct
 
