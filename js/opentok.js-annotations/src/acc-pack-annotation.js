@@ -35,12 +35,12 @@
     actionInitialize: 'Init',
     actionStart: 'Start',
     actionEnd: 'End',
-    actionFreeHand: 'Free Hand',
-    actionPickerColor: 'Picker Color',
+    actionFreeHand: 'FreeHand',
+    actionPickerColor: 'PickerColor',
     actionText: 'Text',
-    actionScreenCapture: 'Screen Capture',
+    actionScreenCapture: 'ScreenCapture',
     actionErase: 'Erase',
-    actionUseToolbar: 'Use Toolbar',
+    actionUseToolbar: 'UseToolbar',
     variationAttempt: 'Attempt',
     variationError: 'Failure',
     variationSuccess: 'Success',
@@ -99,81 +99,13 @@
 
   var _setupUI = function () {
     var toolbar = [
-      '<div id="annotationToolbarContainer" class="annotation-toolbar-container">',
+      '<div id="annotationToolbarContainer" class="ots-annotation-toolbar-container">',
       '<div id="toolbar"></div>',
       '</div>'
     ].join('\n');
     $('body').append(toolbar);
     _log(_logEventData.actionUseToolbar, _logEventData.variationSuccess);
   };
-
-  // Toolbar items
-  var _defaultToolbarItems = [{
-    id: 'OT_pen',
-    title: 'Pen',
-    icon: '../images/annotation/freehand.png',
-    selectedIcon: '../images/annotation/freehand_selected.png'
-  }, {
-    id: 'OT_line',
-    title: 'Line',
-    icon: '../images/annotation/line.png',
-    selectedIcon: '../images/annotation/line_selected.png'
-  }, {
-    id: 'OT_text',
-    title: 'Text',
-    icon: '../images/annotation/text.png',
-    selectedIcon: '../images/annotation/text.png'
-  }, {
-    id: 'OT_shapes',
-    title: 'Shapes',
-    icon: '../images/annotation/shapes.png',
-    items: [{
-      id: 'OT_arrow',
-      title: 'Arrow',
-      icon: '../images/annotation/arrow.png'
-    }, {
-      id: 'OT_rect',
-      title: 'Rectangle',
-      icon: '../images/annotation/rectangle.png'
-    }, {
-      id: 'OT_oval',
-      title: 'Oval',
-      icon: '../images/annotation/oval.png'
-    }, {
-      id: 'OT_star',
-      title: 'Star',
-      icon: '../images/annotation/star.png',
-      points: [
-        /* eslint-disable max-len */
-        [0.5 + 0.5 * Math.cos(90 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(90 * (Math.PI / 180))],
-        [0.5 + 0.25 * Math.cos(126 * (Math.PI / 180)), 0.5 + 0.25 * Math.sin(126 * (Math.PI / 180))],
-        [0.5 + 0.5 * Math.cos(162 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(162 * (Math.PI / 180))],
-        [0.5 + 0.25 * Math.cos(198 * (Math.PI / 180)), 0.5 + 0.25 * Math.sin(198 * (Math.PI / 180))],
-        [0.5 + 0.5 * Math.cos(234 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(234 * (Math.PI / 180))],
-        [0.5 + 0.25 * Math.cos(270 * (Math.PI / 180)), 0.5 + 0.25 * Math.sin(270 * (Math.PI / 180))],
-        [0.5 + 0.5 * Math.cos(306 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(306 * (Math.PI / 180))],
-        [0.5 + 0.25 * Math.cos(342 * (Math.PI / 180)), 0.5 + 0.25 * Math.sin(342 * (Math.PI / 180))],
-        [0.5 + 0.5 * Math.cos(18 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(18 * (Math.PI / 180))],
-        [0.5 + 0.25 * Math.cos(54 * (Math.PI / 180)), 0.5 + 0.25 * Math.sin(54 * (Math.PI / 180))],
-        [0.5 + 0.5 * Math.cos(90 * (Math.PI / 180)), 0.5 + 0.5 * Math.sin(90 * (Math.PI / 180))]
-        /* eslint-enable max-len */
-      ]
-    }]
-  }, {
-    id: 'OT_colors',
-    title: 'Colors',
-    icon: '',
-    items: { /* Built dynamically */ }
-  }, {
-    id: 'OT_line_width',
-    title: 'Line Width',
-    icon: '../images/annotation/line_width.png',
-    items: { /* Built dynamically */ }
-  }, {
-    id: 'OT_clear',
-    title: 'Clear',
-    icon: '../images/annotation/clear.png'
-  }];
 
   var _palette = [
     '#1abc9c',
@@ -248,7 +180,7 @@
 
   var _createToolbar = function (session, options, externalWindow) {
     var toolbarId = _.property('toolbarId')(options) || 'toolbar';
-    var items = _.property('toolbarItems')(options) || _defaultToolbarItems;
+    var items = _.property('toolbarItems')(options);
     var colors = _.property('colors')(options) || _palette;
 
     var container = function () {
@@ -261,8 +193,9 @@
       session: session,
       container: container(),
       colors: colors,
-      items: items,
-      externalWindow: externalWindow || null
+      items: !!items && !!items.length ? options.items : null,
+      externalWindow: externalWindow || null,
+      OTKAnalytics: OTKAnalytics
     });
 
     toolbar.itemClicked(function (id) {
@@ -289,9 +222,9 @@
 
     var width = screen.width * 0.80 | 0;
     var height = width / (_aspectRatio);
-    var url = ['templates/screenshare.html?opentok-annotation'].join('');
+    var externalWindowHTML = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"><title>OpenTok Screen Sharing Solution Annotation</title><style type="text/css" media="screen"> body{margin: 0; background-color: rgba(0, 153, 203, 0.7); box-sizing: border-box; height: 100vh;}canvas{top: 0; z-index: 1000;}.hidden{display: none;}.main-wrap{width: 100%; height: 100%; -ms-box-orient: horizontal; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -moz-flex; display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center;}.inner-wrap{position: relative; border-radius: 8px; overflow: hidden;}.fixed-container{position: fixed; top: 275px; right: 0; width: 40px; z-index: 1001;}.fixed-container .toolbar-wrap{position: absolute; top: 0; left: 0;}.fixed-container .toolbar-wrap input{display: block; top: 0 !important; transform: none !important;}.fixed-container .toolbar-wrap .OT_color{width: 30px; margin-right: 5px !important; margin-left: 5px !important; padding: 0;}.fixed-container .toolbar-wrap .OT_subpanel, .fixed-container .toolbar-wrap .color-picker{position: absolute; top: 0; right: 40px; padding-left: 0 !important; overflow: hidden;}.fixed-container .toolbar-wrap .OT_subpanel> div{top: 0 !important; transform: none !important;}.fixed-container .toolbar-wrap .color-picker{left: -30px;}.fixed-container .toolbar-wrap .color-picker .color-choice{display: block !important; height: 20px !important; width: 20px !important;}.publisherContainer{display: block; background-color: #000000; position: absolute;}.publisher-wrap{height: 100%; width: 100%;}.subscriberContainer{position: absolute; top: 20px; left: 20px; width: 200px; height: 120px; background-color: #000000; border: 2px solid white; border-radius: 6px;}.subscriberContainer .OT_video-poster{width: 100%; height: 100%; opacity: .25; background-repeat: no-repeat; background-image: url(https://static.opentok.com/webrtc/v2.8.2/images/rtc/audioonly-silhouette.svg); background-size: 50%; background-position: center;}.OT_video-element{height: 100%; width: 100%;}.OT_edge-bar-item{display: none;}</style></head><body> <div class="main-wrap"> <div id="annotationContainer" class="inner-wrap"></div></div><div id="toolbarContainer" class="fixed-container"> <div id="toolbar" class="toolbar-wrap"></div></div><div id="subscriberVideo" class="subscriberContainer hidden"></div><script type="text/javascript" charset="utf-8"> /** Must use double-quotes since everything must be converted to a string */ var opener; var canvas; if (!toolbar){alert("Something went wrong: You must pass an OpenTok annotation toolbar object into the window.")}else{opener=window.opener; window.onbeforeunload=window.triggerCloseEvent;}var localScreenProperties={insertMode: "append", width: "100%", height: "100%", videoSource: "window", showControls: false, style:{buttonDisplayMode: "off"}, fitMode: "contain"}; var createContainerElements=function(){var parentDiv=document.getElementById("annotationContainer"); var publisherContainer=document.createElement("div"); publisherContainer.setAttribute("id", "screenshare_publisher"); publisherContainer.classList.add("publisher-wrap"); parentDiv.appendChild(publisherContainer); return{annotation: parentDiv, publisher: publisherContainer};}; var addSubscriberVideo=function(stream){var container=document.getElementById("subscriberVideo"); session.subscribe(stream, container, localScreenProperties, function(error){if (error){console.log("Failed to add subscriber video", error);}container.classList.remove("hidden");});}; if (navigator.userAgent.indexOf("Firefox") !==-1){var ghost=window.open("about:blank"); ghost.focus(); ghost.close();}</script></body></html>';
 
-
+    /* eslint-disable max-len */
     var windowFeatures = [
       'toolbar=no',
       'location=no',
@@ -302,8 +235,10 @@
       'resizable=no',
       'copyhistory=no', ['width=', width].join(''), ['height=', height].join(''), ['left=', ((screen.width / 2) - (width / 2))].join(''), ['top=', ((screen.height / 2) - (height / 2))].join('')
     ].join(',');
+    /* eslint-enable max-len */
 
-    var annotationWindow = window.open(url, '', windowFeatures);
+    var annotationWindow = window.open('about:blank', '', windowFeatures);
+    annotationWindow.document.write(externalWindowHTML);
     window.onbeforeunload = function () {
       annotationWindow.close();
     };
@@ -314,6 +249,10 @@
     annotationWindow.$ = $;
 
     annotationWindow.triggerCloseEvent = function () {
+      _triggerEvent('annotationWindowClosed');
+    };
+
+    annotationWindow.onbeforeunload = function () {
       _triggerEvent('annotationWindowClosed');
     };
 
@@ -421,26 +360,41 @@
     _triggerEvent('linkAnnotation');
   };
 
-
+  /**
+   * Manually update the size of the canvas to match it's container, or the
+   * absolute parent, if defined.
+   */
   var resizeCanvas = function () {
     _resizeCanvas();
+  };
+
+  /**
+   * Adds a subscriber's video the external annotation window
+   * @param {Object} stream - The subscriber stream object
+   */
+  var addSubscriberToExternalWindow = function (stream) {
+    if (!_elements.externalWindow) {
+      console.log('OT Annotation: External window does not exist. Cannot add subscriber video.');
+    } else {
+      _elements.externalWindow.addSubscriberVideo(stream);
+    }
   };
 
   /**
    * Stop annotation and clean up components
    * @param {Boolean} publisher Are we the publisher?
    */
-  var end = function (publisher) {
+  var end = function () {
     _removeToolbar();
     _elements.canvas = null;
-    if (!!publisher) {
-      if (!!_elements.externalWindow) {
-        _elements.externalWindow.close();
-        _elements.externalWindow = null;
-        _elements.resizeSubject = null;
-      }
-      _triggerEvent('endAnnotation');
+
+    if (!!_elements.externalWindow) {
+      _elements.externalWindow.close();
+      _elements.externalWindow = null;
+      _elements.resizeSubject = null;
     }
+    _triggerEvent('endAnnotation');
+
     _log(_logEventData.actionEnd, _logEventData.variationSuccess);
   };
   /**
@@ -472,6 +426,7 @@
     start: start,
     linkCanvas: linkCanvas,
     resizeCanvas: resizeCanvas,
+    addSubscriberToExternalWindow: addSubscriberToExternalWindow,
     end: end
   };
 
