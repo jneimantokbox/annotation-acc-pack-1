@@ -16,7 +16,7 @@
 #import "OTAnnotationToolbarView_Private.h"
 
 #import "UIViewController+Helper.h"
-#import <OTKAnalytics/OTKLogger.h>
+#import "AnnLoggingWrapper.h"
 
 #import "Constants.h"
 
@@ -201,7 +201,7 @@
 - (void)initializeToolbarView {
     CGRect mainBounds = [UIScreen mainScreen].bounds;
     self.toolbarView = [[OTAnnotationToolbarView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(mainBounds), DefaultToolbarHeight) annotationScrollView:self];
-    [OTKLogger logEventAction:KLogActionUseToolbar variation:KLogVariationSuccess completion:nil];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionUseToolbar variation:KLogVariationSuccess completion:nil];
 }
 
 - (void)addTextAnnotation:(OTAnnotationTextView *)annotationTextView {

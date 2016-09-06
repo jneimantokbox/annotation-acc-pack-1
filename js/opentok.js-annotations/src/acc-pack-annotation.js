@@ -86,15 +86,17 @@
   };
 
   var _registerEvents = function () {
-    var events = [
-      'startAnnotation',
-      'linkAnnotation',
-      'resizeCanvas',
-      'annotationWindowClosed',
-      'endAnnotation'
-    ];
+    if (_accPack) {
+      var events = [
+        'startAnnotation',
+        'linkAnnotation',
+        'resizeCanvas',
+        'annotationWindowClosed',
+        'endAnnotation'
+      ];
 
-    _accPack.registerEvents(events);
+      _accPack.registerEvents(events);
+    }
   };
 
   var _setupUI = function () {
@@ -246,6 +248,7 @@
     // External window needs access to certain globals
     annotationWindow.toolbar = toolbar;
     annotationWindow.OT = OT;
+    annotationWindow.session = _session;
     annotationWindow.$ = $;
 
     annotationWindow.triggerCloseEvent = function () {

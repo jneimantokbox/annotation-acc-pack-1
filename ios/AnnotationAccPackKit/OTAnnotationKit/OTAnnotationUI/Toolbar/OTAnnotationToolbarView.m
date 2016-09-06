@@ -12,7 +12,7 @@
 #import "OTAnnotationKitBundle.h"
 
 #import <LHToolbar/LHToolbar.h>
-#import <OTKAnalytics/OTKLogger.h>
+#import "AnnLoggingWrapper.h"
 
 #import "OTAnnotationScreenCaptureViewController.h"
 #import "OTAnnotationEditTextViewController.h"
@@ -169,7 +169,7 @@
         [self.toolbar removeContentViewAtIndex:0];
         [self moveSelectionShadowViewTo:nil];
         [self resetToolbarButtons];
-        [OTKLogger logEventAction:KLogActionDone variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionDone variation:KLogVariationSuccess completion:nil];
     }
     else if (sender == self.annotateButton) {
         self.annotationScrollView.annotatable = YES;
@@ -244,7 +244,7 @@
    didSelectColorButton:(OTAnnotationColorPickerViewButton *)button
           selectedColor:(UIColor *)selectedColor {
     
-    [OTKLogger logEventAction:KLogActionPickerColor variation:KLogVariationSuccess completion:nil];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionPickerColor variation:KLogVariationSuccess completion:nil];
     [self.colorButton setBackgroundColor:selectedColor];
     if (self.annotationScrollView.isAnnotatable) {
         if ([self.annotationScrollView.annotationView.currentAnnotatable isKindOfClass:[OTAnnotationTextView class]]) {

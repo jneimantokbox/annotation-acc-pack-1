@@ -39,6 +39,10 @@
 		A05835091D2F395200E484FB /* OTAnnotationKitBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = A05835071D2F395200E484FB /* OTAnnotationKitBundle.m */; };
 		A05F53E61D52BCAB0042B913 /* OTAnnotationTextView+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D8947B1D50040800863A14 /* OTAnnotationTextView+Gesture.m */; };
 		A05F53E71D52BCAB0042B913 /* OTAnnotationView+Signaling.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B63EC81D48089200123B51 /* OTAnnotationView+Signaling.m */; };
+		A0685F361D6F988400F34DD1 /* AnnLoggingWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A0685F341D6F988400F34DD1 /* AnnLoggingWrapper.h */; };
+		A0685F371D6F988400F34DD1 /* AnnLoggingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0685F351D6F988400F34DD1 /* AnnLoggingWrapper.m */; };
+		A0685F381D6F997800F34DD1 /* AnnLoggingWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A0685F341D6F988400F34DD1 /* AnnLoggingWrapper.h */; };
+		A0685F391D6F997B00F34DD1 /* AnnLoggingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0685F351D6F988400F34DD1 /* AnnLoggingWrapper.m */; };
 		A0AB576E1D2C392D00F8410B /* OTAnnotationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AB57641D2C392D00F8410B /* OTAnnotationKit.framework */; };
 		A0AB57751D2C392D00F8410B /* OTAnnotationKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AB57741D2C392D00F8410B /* OTAnnotationKitTests.m */; };
 		A0AB57791D2C392D00F8410B /* OTAnnotationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AB57641D2C392D00F8410B /* OTAnnotationKit.framework */; };
@@ -199,6 +203,8 @@
 		A0070D431D2C6724001C65EE /* OTFullScreenAnnotationViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTFullScreenAnnotationViewControllerTests.m; sourceTree = "<group>"; };
 		A05835061D2F395200E484FB /* OTAnnotationKitBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAnnotationKitBundle.h; sourceTree = "<group>"; };
 		A05835071D2F395200E484FB /* OTAnnotationKitBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAnnotationKitBundle.m; sourceTree = "<group>"; };
+		A0685F341D6F988400F34DD1 /* AnnLoggingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnLoggingWrapper.h; sourceTree = "<group>"; };
+		A0685F351D6F988400F34DD1 /* AnnLoggingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnLoggingWrapper.m; sourceTree = "<group>"; };
 		A0AB57641D2C392D00F8410B /* OTAnnotationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OTAnnotationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AB576D1D2C392D00F8410B /* OTAnnotationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OTAnnotationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AB57741D2C392D00F8410B /* OTAnnotationKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OTAnnotationKitTests.m; sourceTree = "<group>"; };
@@ -321,6 +327,8 @@
 				A0055E471D3D7FF300E45FE5 /* OTAnnotator.m */,
 				A05835061D2F395200E484FB /* OTAnnotationKitBundle.h */,
 				A05835071D2F395200E484FB /* OTAnnotationKitBundle.m */,
+				A0685F341D6F988400F34DD1 /* AnnLoggingWrapper.h */,
+				A0685F351D6F988400F34DD1 /* AnnLoggingWrapper.m */,
 				A0AB579D1D2C48E400F8410B /* OTAnnotationNative */,
 				A0AB57AA1D2C48E400F8410B /* OTAnnotationUI */,
 				A0AB57F11D2C49BF00F8410B /* Category */,
@@ -520,6 +528,7 @@
 				A0AB57D31D2C48E400F8410B /* OTFullScreenAnnotationViewController.h in Headers */,
 				A0AB57FA1D2C49BF00F8410B /* UIButton+AutoLayoutHelper.h in Headers */,
 				A0D8947C1D50040800863A14 /* OTAnnotationTextView+Gesture.h in Headers */,
+				A0685F361D6F988400F34DD1 /* AnnLoggingWrapper.h in Headers */,
 				A0AB57D71D2C48E400F8410B /* OTAnnotationScreenCaptureViewController.h in Headers */,
 				A0AB57F81D2C49BF00F8410B /* OTAnnotationToolbarView+Animation.h in Headers */,
 				A0AB57DF1D2C48E400F8410B /* OTAnnotationToolbarView_Private.h in Headers */,
@@ -562,6 +571,7 @@
 				A0E9FACD1D403DF900460599 /* OTAnnotationScrollView_Private.h in Headers */,
 				A0E9FACE1D403DF900460599 /* OTAnnotationToolbarButton.h in Headers */,
 				A0E9FACF1D403DF900460599 /* JSON.h in Headers */,
+				A0685F381D6F997800F34DD1 /* AnnLoggingWrapper.h in Headers */,
 				A0E9FAD01D403DF900460599 /* OTAnnotationEditTextViewController.h in Headers */,
 				A0E9FAD11D403DF900460599 /* OTAnnotationToolbarView_UserInterfaces.h in Headers */,
 			);
@@ -793,6 +803,7 @@
 				A0AB57D81D2C48E400F8410B /* OTAnnotationScreenCaptureViewController.m in Sources */,
 				A0AB57DA1D2C48E400F8410B /* OTAnnotationEditTextViewController.m in Sources */,
 				A0AB57CF1D2C48E400F8410B /* OTAnnotationColorPickerView.m in Sources */,
+				A0685F371D6F988400F34DD1 /* AnnLoggingWrapper.m in Sources */,
 				A0AB57FD1D2C49BF00F8410B /* UIViewController+Helper.m in Sources */,
 				A0055E511D3D974700E45FE5 /* JSON.m in Sources */,
 				A0AB57CB1D2C48E400F8410B /* OTAnnotationTextView.m in Sources */,
@@ -859,6 +870,7 @@
 				A0E9FAAF1D403DF900460599 /* UIButton+AutoLayoutHelper.m in Sources */,
 				A0E9FAB01D403DF900460599 /* OTAnnotationScreenCaptureViewController.m in Sources */,
 				A0E9FAB11D403DF900460599 /* OTAnnotationEditTextViewController.m in Sources */,
+				A0685F391D6F997B00F34DD1 /* AnnLoggingWrapper.m in Sources */,
 				A0E9FAB21D403DF900460599 /* OTAnnotationColorPickerView.m in Sources */,
 				A0E9FAB31D403DF900460599 /* UIViewController+Helper.m in Sources */,
 				A0E9FAB41D403DF900460599 /* JSON.m in Sources */,

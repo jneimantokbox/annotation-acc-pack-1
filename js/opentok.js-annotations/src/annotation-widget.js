@@ -156,7 +156,7 @@
      */
     this.selectItem = function (item) {
       if (self.overlay) {
-        self.overlay.style.display = 'none';
+        self.parent.removeChild(self.overlay);
         self.overlay = null;
       }
 
@@ -165,6 +165,7 @@
 
         if (!self.overlay) {
           self.overlay = document.createElement('div');
+          self.overlay.id = 'captureOverlay';
           self.overlay.style.position = 'absolute';
           self.overlay.style.top = '0px';
           self.overlay.style.width = self.parent.clientWidth + 'px';
@@ -187,8 +188,10 @@
 
           self.overlay.onclick = function () {
             self.captureScreenshot();
-            self.overlay.style.display = 'none';
+            self.parent.removeChild(self.overlay);
             self.overlay = null;
+            self.parent.onmouseover = null;
+            self.parent.onmouseout = null;
           };
         } else {
           self.overlay.style = 'inline';

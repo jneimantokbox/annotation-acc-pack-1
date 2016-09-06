@@ -6,7 +6,8 @@
 
 #import "OTAnnotationView.h"
 
-#import <OTKAnalytics/OTKLogger.h>
+#import "AnnLoggingWrapper.h"
+
 #import "OTAnnotator.h"
 #import "OTAnnotationView+Signaling.h"
 
@@ -34,12 +35,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
-        [OTKLogger analyticsWithClientVersion:KLogClientVersion
-                                       source:[[NSBundle mainBundle] bundleIdentifier]
-                                  componentId:kLogComponentIdentifier
-                                         guid:[[NSUUID UUID] UUIDString]];
-        
-        [OTKLogger logEventAction:KLogActionInitialize variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionInitialize variation:KLogVariationSuccess completion:nil];
         
         _annotationDataManager = [[OTAnnotationDataManager alloc] init];
         [self setBackgroundColor:[UIColor clearColor]];
@@ -53,7 +49,7 @@
         _currentAnnotatable = annotatable;
         _currentDrawPath = (OTAnnotationPath *)annotatable;
         [self addAnnotatable:annotatable];
-        [OTKLogger logEventAction:KLogActionFreeHand variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionFreeHand variation:KLogVariationSuccess completion:nil];
     }
     else if ([annotatable isKindOfClass:[OTAnnotationTextView class]]) {
         _currentAnnotatable = annotatable;
@@ -93,13 +89,13 @@
     if ([annotatable isMemberOfClass:[OTAnnotationPath class]]) {
         [self.annotationDataManager pop];
         [self setNeedsDisplay];
-        [OTKLogger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
     }
     else if ([annotatable isMemberOfClass:[OTAnnotationTextView class]]) {
         [self.annotationDataManager pop];
         OTAnnotationTextView *textfield = (OTAnnotationTextView *)annotatable;
         [textfield removeFromSuperview];
-        [OTKLogger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
     }
 }
 
@@ -107,7 +103,7 @@
     
     [self.annotationDataManager pop];
     [self setNeedsDisplay];
-    [OTKLogger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionErase variation:KLogVariationSuccess completion:nil];
 }
 
 - (void)commitCurrentAnnotatable {
@@ -121,7 +117,7 @@
 }
 
 - (UIImage *)captureScreen {
-    [OTKLogger logEventAction:KLogActionScreenCapture variation:KLogVariationSuccess completion:nil];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionScreenCapture variation:KLogVariationSuccess completion:nil];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     UIGraphicsBeginImageContext(screenRect.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -161,7 +157,7 @@
     CGPoint touchPoint = [touch locationInView:touch.view];
     OTAnnotationPoint *annotatinPoint = [OTAnnotationPoint pointWithX:touchPoint.x andY:touchPoint.y];
     [_currentDrawPath startAtPoint:annotatinPoint];
-    [OTKLogger logEventAction:KLogActionStartDrawing variation:KLogVariationSuccess completion:nil];
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionStartDrawing variation:KLogVariationSuccess completion:nil];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -194,7 +190,7 @@
         [_currentDrawPath drawToPoint:annotatinPoint];
         [self setNeedsDisplay];
         [self commitCurrentAnnotatable];
-        [OTKLogger logEventAction:KLogActionEndDrawing variation:KLogVariationSuccess completion:nil];
+        [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionEndDrawing variation:KLogVariationSuccess completion:nil];
     }
 }
 

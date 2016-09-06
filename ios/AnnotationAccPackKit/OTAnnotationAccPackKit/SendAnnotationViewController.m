@@ -23,7 +23,7 @@
     /**
      *  UNCOMMENT THIS TO START TESTING
      */
-    self.sharer = [OTScreenSharer screenSharer];
+    self.sharer = [OTScreenSharer sharedInstance];
     [self.sharer connectWithView:[UIApplication sharedApplication].keyWindow.rootViewController.view
                          handler:^(ScreenShareSignal signal, NSError *error) {
                              
