@@ -1,6 +1,6 @@
 ![logo](../tokbox-logo.png)
 
-# OpenTok Annotations Accelerator Pack for iOS<br/>Version 1.0.0
+# OpenTok Annotations Accelerator Pack for iOS
 
 
 
