@@ -4,17 +4,6 @@
 
 This document describes how to use the OpenTok Annotations Accelerator Pack for iOS. Through the exploration of this Accelerator Pack, you will learn best practices for development and customization with annotations on an iOS mobile device.
 
-The OpenTok Annotations Accelerator Pack does not include a standalone sample app such as [screensharing-annotation-acc-pack](https://github.com/opentok/screensharing-annotation-acc-pack), though you can easily build your own apps with it. It is also used as a component for more comprehensive Accelerator Packs that offer such features as screensharing and video along with annotations. 
-
-_**NOTE**: Your app will need a **Session ID**, **Token**, and **API Key**, which you can get at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/). For production deployment, you must generate the **Session ID** and **Token** values using the [OpenTok Server SDK](https://tokbox.com/developer/sdks/server/)._
-
-
-## Prerequisites
-
-To be prepared to develop with the Annotations Accelerator Pack for iOS:
-
-1. Install Xcode version 5 or later, with ARC enabled.
-2. Your device must be running iOS 8 or later.
 
 
 ## Quick start
@@ -75,4 +64,11 @@ The `OTAnnotationScrollView` class is the backbone of the annotation features in
 @end
 ```
 
+
+## Requirements
+
+To be prepared to develop with the Annotations Accelerator Pack for iOS:
+
+1. Install Xcode version 5 or later, with ARC enabled.
+2. Your device must be running iOS 8 or later.
 

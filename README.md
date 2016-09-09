@@ -17,4 +17,7 @@ To get started with your development, visit the following sites:
 - [OpenTok Annotations Accelerator Pack for iOS](./ios)
 - [OpenTok Annotations Accelerator Pack for JavaScript](./js)
 
-_**NOTE:** The app you develop requires a **Session ID**, **Token**, and **API Key**. During your development and testing you can get these values at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/). For production deployment, you must generate the **Session ID** and **Token** values using one of the [OpenTok Server SDKs](https://tokbox.com/developer/sdks/server/)._
+
+The OpenTok Annotations Accelerator Pack does not include a standalone sample app such as [screensharing-annotation-acc-pack](https://github.com/opentok/screensharing-annotation-acc-pack), though you can easily build your own apps with it. It is also used as a component for more comprehensive Accelerator Packs that offer such features as screensharing and video along with annotations. 
+
+_**NOTE**: Your app will need a **Session ID**, **Token**, and **API Key**, which you can get at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/). For production deployment, you must generate the **Session ID** and **Token** values using the [OpenTok Server SDK](https://tokbox.com/developer/sdks/server/)._
