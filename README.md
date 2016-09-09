@@ -4,6 +4,8 @@
 
 The OpenTok Annotations Accelerator Pack provides functionality you can add to your OpenTok applications that enables users to use an annotation toolbar on both mobile and browser-based devices. 
 
+This document describes how to use the OpenTok Annotations Accelerator Pack. Through the exploration of this Accelerator Pack, you will learn best practices for development and customization with annotations.
+
 With the OpenTok Annotations Accelerator Pack, you can:
 
 - Initiate and manage interoperable annotation features between two users, regardless of the devices they are using.

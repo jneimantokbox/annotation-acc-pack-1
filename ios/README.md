@@ -2,8 +2,6 @@
 
 # OpenTok Annotations Accelerator Pack for iOS<br/>Version 1.0.0
 
-This document describes how to use the OpenTok Annotations Accelerator Pack for iOS. Through the exploration of this Accelerator Pack, you will learn best practices for development and customization with annotations on an iOS mobile device.
-
 
 
 ## Quick start
@@ -21,7 +19,8 @@ For more information about CocoaPods, including installation instructions, visit
 
 This section describes how the sample app code design uses recommended best practices to deploy the annotations features. 
 
-For detail about the SDK, as well as the APIs used to develop this sample, see the [OpenTok iOS SDK Requirements](https://tokbox.com/developer/sdks/ios/) and the [OpenTok iOS SDK Reference](https://tokbox.com/developer/sdks/ios/reference/).
+For detail about development with the SDK, as well as the APIs used to develop this sample, see [Requirements](#requirements), the [OpenTok iOS SDK Requirements](https://tokbox.com/developer/sdks/ios/) and the [OpenTok iOS SDK Reference](https://tokbox.com/developer/sdks/ios/reference/).
+
 
 
 ### Class design
