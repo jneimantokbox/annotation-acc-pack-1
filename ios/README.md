@@ -4,33 +4,24 @@
 
 This document describes how to use the OpenTok Annotations Accelerator Pack for iOS. Through the exploration of this Accelerator Pack, you will learn best practices for development and customization with annotations on an iOS mobile device.
 
-**Note**: The OpenTok Annotations Accelerator Pack does not include a standalone sample app such as [screensharing-annotation-acc-pack](https://github.com/opentok/screensharing-annotation-acc-pack), though you can easily build your own apps with it. It is also used as a component for more comprehensive Accelerator Packs that offer such features as screensharing and video along with annotations. 
+The OpenTok Annotations Accelerator Pack does not include a standalone sample app such as [screensharing-annotation-acc-pack](https://github.com/opentok/screensharing-annotation-acc-pack), though you can easily build your own apps with it. It is also used as a component for more comprehensive Accelerator Packs that offer such features as screensharing and video along with annotations. 
 
-
-This guide has the following sections:
-
-* [Prerequisites](#prerequisites): A checklist of everything you need to get started.
-* [Quick start](#quick-start): A step-by-step tutorial to help you quickly import and use the OpenTok Annotations Accelerator Pack for iOS.
-* [Exploring the code](#exploring-the-code): This describes the Accelerator Pack code design, which uses recommended best practices to implement the annotation and frame grab capabilities available in the OpenTok client SDK.  
+_**NOTE**: Your app will need a **Session ID**, **Token**, and **API Key**, which you can get at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/). For production deployment, you must generate the **Session ID** and **Token** values using the [OpenTok Server SDK](https://tokbox.com/developer/sdks/server/)._
 
 
 ## Prerequisites
 
-To be prepared to develop with the Annotations Accelerator Pack for Android:
+To be prepared to develop with the Annotations Accelerator Pack for iOS:
 
-1. Install Xcode version 5 or later.
-2. Review the [OpenTok iOS SDK Requirements](https://tokbox.com/developer/sdks/ios/).
-3. Your app will need a **Session ID**, **Token**, and **API Key**, which you can get at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/).
-
-
-_**NOTE**: The OpenTok Developer Dashboard allows you to quickly run this sample program. For production deployment, you must generate the **Session ID** and **Token** values using the [OpenTok Server SDK](https://tokbox.com/developer/sdks/server/)._
+1. Install Xcode version 5 or later, with ARC enabled.
+2. Your device must be running iOS 8 or later.
 
 
 ## Quick start
 
 To get up and running quickly with your development, go through the following steps using CocoaPods:
 
-1.  Add the following line to your pod file: ` pod ‘OTAnnotationKit’  `
+1. Add the following line to your pod file: ` pod ‘OTAnnotationKit’  `
 2. In a terminal prompt, navigate into your project directory and type `pod install`.
 3. Reopen your project using the new *.xcworkspace file.
 
@@ -41,7 +32,7 @@ For more information about CocoaPods, including installation instructions, visit
 
 This section describes how the sample app code design uses recommended best practices to deploy the annotations features. 
 
-For detail about the APIs used to develop this sample, see the [OpenTok iOS SDK Reference](https://tokbox.com/developer/sdks/ios/reference/).
+For detail about the SDK, as well as the APIs used to develop this sample, see the [OpenTok iOS SDK Requirements](https://tokbox.com/developer/sdks/ios/) and the [OpenTok iOS SDK Reference](https://tokbox.com/developer/sdks/ios/reference/).
 
 
 ### Class design
