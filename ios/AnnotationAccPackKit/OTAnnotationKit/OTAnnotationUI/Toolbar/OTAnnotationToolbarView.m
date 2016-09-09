@@ -195,9 +195,20 @@
         [self.annotationScrollView.annotationView undoAnnotatable];
     }
     else if (sender == self.screenshotButton) {
-        self.captureViewController.sharedImage = [self.annotationScrollView.annotationView captureScreen];
+        if (self.toolbarViewDataSource) {
+            self.captureViewController.sharedImage = [self.annotationScrollView.annotationView captureScreenWithView:[self.toolbarViewDataSource annotationToolbarViewForRootViewForScreenShot:self]];
+        }
+        else {
+            self.captureViewController.sharedImage = [self.annotationScrollView.annotationView captureScreenWithView:_annotationScrollView];
+        }
         UIViewController *topViewController = [UIViewController topViewControllerWithRootViewController];
         [topViewController presentViewController:self.captureViewController animated:YES completion:nil];
+    }
+    
+    if (self.toolbarViewDelegate) {
+        
+        NSInteger row = [self.toolbar indexOfContentView:sender];
+        [self.toolbarViewDelegate annotationToolbarView:self didPressToolbarViewItemButtonAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
     }
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
