@@ -9,7 +9,6 @@
 #import "AnnLoggingWrapper.h"
 
 #import "OTAnnotator.h"
-#import "OTAnnotationView+Signaling.h"
 
 #import "Constants.h"
 
@@ -17,19 +16,9 @@
 @property (nonatomic) OTAnnotationTextView *currentEditingTextView;
 @property (nonatomic) OTAnnotationPath *currentDrawPath;
 @property (nonatomic) OTAnnotationDataManager *annotationDataManager;
-@property (weak, nonatomic) OTAnnotator *annotator;
 @end
 
 @implementation OTAnnotationView
-
-- (OTAnnotator *)annotator {
-    if (!_annotator) {
-        if ([OTAnnotator annotator].annotationView == self) {
-            _annotator = [OTAnnotator annotator];
-        }
-    }
-    return _annotator;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     
@@ -116,7 +105,7 @@
     _currentEditingTextView = nil;
 }
 
-- (UIImage *)captureScreen {
+- (UIImage *)captureFullScreen {
     [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionScreenCapture variation:KLogVariationSuccess completion:nil];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     UIGraphicsBeginImageContext(screenRect.size);
@@ -127,6 +116,21 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (UIImage *)captureScreenWithView:(UIView *)view {
+    
+    [[AnnLoggingWrapper sharedInstance].logger logEventAction:KLogActionScreenCapture variation:KLogVariationSuccess completion:nil];
+    if (view == [UIApplication sharedApplication].keyWindow.rootViewController.view) {
+        return [self captureFullScreen];
+    }
+    else {
+        UIGraphicsBeginImageContext(view.frame.size);
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return outputImage;
+    }
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -150,8 +154,8 @@
     }
     UITouch *touch = [touches anyObject];
     
-    if (self.annotator && self.annotator.isSendAnnotationEnabled){
-        [self signalAnnotatble:_currentAnnotatable touch:touch addtionalInfo:nil];
+    if (self.annotationViewDelegate) {
+        [self.annotationViewDelegate annotationView:self touchBegan:touch withEvent:event];
     }
     
     CGPoint touchPoint = [touch locationInView:touch.view];
@@ -165,8 +169,8 @@
     if (_currentDrawPath) {
         UITouch *touch = [touches anyObject];
         
-        if (self.annotator && self.annotator.isSendAnnotationEnabled){
-            [self signalAnnotatble:_currentAnnotatable touch:touch addtionalInfo:nil];
+        if (self.annotationViewDelegate) {
+            [self.annotationViewDelegate annotationView:self touchMoved:touch withEvent:event];
         }
         
         CGPoint touchPoint = [touch locationInView:touch.view];
@@ -181,8 +185,8 @@
     if (_currentDrawPath) {
         UITouch *touch = [touches anyObject];
         
-        if (self.annotator && self.annotator.isSendAnnotationEnabled){
-            [self signalAnnotatble:_currentAnnotatable touch:touch addtionalInfo:@{@"endPoint":@(YES)}];
+        if (self.annotationViewDelegate) {
+            [self.annotationViewDelegate annotationView:self touchEnded:touch withEvent:event];
         }
         
         CGPoint touchPoint = [touch locationInView:touch.view];

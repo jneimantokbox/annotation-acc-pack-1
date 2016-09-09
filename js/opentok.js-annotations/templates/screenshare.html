@@ -189,12 +189,13 @@
 
         var addSubscriberVideo = function(stream) {
             var container = document.getElementById("subscriberVideo");
-            session.subscribe(stream, container, localScreenProperties, function(error) {
+            var subscriber = session.subscribe(stream, container, localScreenProperties, function(error) {
                 if (error) {
                     console.log("Failed to add subscriber video", error);
                 }
                 container.classList.remove("hidden");
             });
+            subscriber.subscribeToAudio(false);
         };
 
 

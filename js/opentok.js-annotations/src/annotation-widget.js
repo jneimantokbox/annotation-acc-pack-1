@@ -64,7 +64,6 @@
 
 
   OTSolution = this.OTSolution || {};
-  console.log('ello');
 
   OTSolution.Annotations = function (options) {
 
