@@ -1,6 +1,6 @@
 ![logo](../tokbox-logo.png)
 
-# OpenTok Annotations Accelerator Pack for JavaScript<br/>Version 1.0.0
+# OpenTok Annotations Accelerator Pack for JavaScript<br/>Version 2.0.0
 
 ## Quick start
 
@@ -89,5 +89,5 @@ To develop a screen a web-based application that uses the OpenTok Annotations Ac
 
 1. Review the basic requirements for [OpenTok](https://tokbox.com/developer/requirements/) and [OpenTok.js](https://tokbox.com/developer/sdks/js/#browsers).
 1. Include [jQuery](https://jquery.com/) and [Underscore](http://underscorejs.org/).
-1. Install the OpenTok Annotations Accelerator Pack: <ol><li>Install with [npm](https://www.npmjs.com/package/opentok-annotation).</li><li>Run the [build.sh script](./build.sh).</li><li>Download and extract the **annotation-acc-pack.js** file from the [zip](https://s3.amazonaws.com/artifact.tokbox.com/solution/rel/annotations/JS/opentok-js-annotations-1.0.0.zip) file provided by TokBox.</li></ol>
+1. Install the OpenTok Annotations Accelerator Pack: <ol><li>Install with [npm](https://www.npmjs.com/package/opentok-annotation).</li><li>Run the [build.sh script](./build.sh).</li><li>Download and extract the **annotation-acc-pack.js** file from the [zip](https://s3.amazonaws.com/artifact.tokbox.com/solution/rel/annotations/JS/opentok-js-annotations-2.0.0.zip) file provided by TokBox.</li></ol>
 1. Code the web page to load [OpenTok.js](https://tokbox.com/developer/sdks/js/) first, and then load [opentok-annotations.js](./sample-app/public/js/components/opentok-annotation.js).  
