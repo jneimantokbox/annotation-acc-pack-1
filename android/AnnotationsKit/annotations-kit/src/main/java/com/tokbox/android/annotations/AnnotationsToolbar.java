@@ -145,6 +145,12 @@ public class AnnotationsToolbar extends LinearLayout {
             mColorToolbar.getChildAt(i).setSelected(false);
         }
 
+        int color = getResources().getColor(R.color.picker_color_orange);
+        mPickerColorBtn.setColorFilter(color);
+        if  (mActionsListener != null ){
+            mActionsListener.onColorSelected(color);
+        }
+        mDoneBtn.setVisibility(GONE);
     }
 
 
@@ -216,13 +222,10 @@ public class AnnotationsToolbar extends LinearLayout {
                     } else {
                         v.setSelected(true);
                     }
-
                     mDoneBtn.setVisibility(VISIBLE);
                 }
                 else {
-                    if (v.getId() == R.id.done){
-                        mDoneBtn.setVisibility(GONE);
-                    }
+                    restart();
                 }
                 mActionsListener.onItemSelected(v, v.isSelected());
             }
