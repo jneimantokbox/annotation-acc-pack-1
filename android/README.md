@@ -1,6 +1,6 @@
 ![logo](../tokbox-logo.png)
 
-# OpenTok Annotations Accelerator Pack for Android<br/>Version 2.0.0
+# OpenTok Annotations Accelerator Pack for Android<br/>Version 1.1.0
 
 ## Quick start
 
@@ -38,13 +38,13 @@ There are 3 options for installing the OpenTok Annotations Accelerator Pack libr
 2. Add the following code snippet to the section labeled 'dependencies’:
 
   ```
-  compile 'com.opentok.android:opentok-annotations:2.0.0’
+  compile 'com.opentok.android:opentok-annotations:1.1.0’
   ```
 
 ### Downloading and Installing the AAR File
 
-1.  Download the [OpenTok Annotations Accelerator Pack zip file](https://s3.amazonaws.com/artifact.tokbox.com/solution/rel/annotations/android/opentok-annotations-2.0.0.zip) containing the AAR file and documentation,
-1. Extract the **opentok-annotations-2.0.0.aar** file.
+1.  Download the [OpenTok Annotations Accelerator Pack zip file](https://s3.amazonaws.com/artifact.tokbox.com/solution/rel/annotations/android/opentok-annotations-1.1.0.zip) containing the AAR file and documentation,
+1. Extract the **opentok-annotations-1.1.0.aar** file.
 2.  Right-click the app name, select **Open Module Settings**, and click **+**.
 3.  Select **Import .JAR/.AAR Package** and click **Next**.
 4.  Browse to the **Annotations Accelerator Pack library AAR** and click **Finish**.
@@ -160,7 +160,7 @@ You can create handlers for the following types of annotations:
   - _Color Picker_: Select a color for the annotation.
   - _Erase_: Delete the most recent annotation.
   - _Screen Capture_: Take a screenshot of the annotations.
-  - _Done_: Clear all annotations.
+  - _Done_: Clear all annotations and re-enabling scrolling.
 
 ## Requirements
 
