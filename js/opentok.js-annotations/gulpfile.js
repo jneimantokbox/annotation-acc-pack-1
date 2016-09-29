@@ -49,7 +49,7 @@ gulp.task('zip', function () {
        'dist/images/**',
        'dist/opentok-annotation.min.js',
      ], { base: 'dist/' })
-     .pipe(zip('opentok-js-annotation-1.0.0.zip'))
+     .pipe(zip('opentok-js-annotation-1.1.0.zip'))
      .pipe(gulp.dest(dist));
  });
 
